@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informationssida</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #06142e, #0b1f45, #0f2f63);
+      color: #f0f0f0;
+      scroll-behavior: smooth;
+      animation: fadeIn 1s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Meny */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: rgba(10, 20, 40, 0.85);
+      padding: 12px 0;
+      z-index: 1000;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 10px;
+      background-color: rgba(28, 47, 85, 0.8);
+      transition: 0.3s;
+      font-weight: bold;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    nav ul li a:hover {
+      background-color: #315a9b;
+      transform: scale(1.08);
+    }
+
+    /* Sektioner */
+    section {
+      padding: 140px 20px 90px;
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.07);
+      border-radius: 20px;
+      margin-top: 70px;
+      backdrop-filter: blur(4px);
+      box-shadow: 0 0 35px rgba(0, 0, 0, 0.45);
+      transform: translateY(20px);
+      animation: popIn 0.8s ease-out forwards;
+    }
+
+    @keyframes popIn {
+      0% {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h2 {
+      font-size: 2.4rem;
+      margin-bottom: 18px;
+      color: #ffffff;
+      text-shadow: 0 0 12px rgba(200, 220, 255, 0.4);
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.75;
+      color: #e3e3e3;
+    }
+
+    /* Mindre bilder + elegant stil */
+    .small-img {
+      width: 60%;
+      max-width: 360px;
+      border-radius: 14px;
+      margin-top: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.45);
+      transition: transform 0.35s ease;
+    }
+
+    .small-img:hover {
+      transform: scale(1.05) rotate(1deg);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+    }
+  </style>
+  <script>
+    // Scroll progress bar
+    window.addEventListener('scroll', () => {
+      const progress = document.getElementById('scrollBar');
+      const total = document.body.scrollHeight - window.innerHeight;
+      const progressHeight = (window.scrollY / total) * 100;
+      progress.style.width = progressHeight + '%';
+    });
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.fade').forEach(sec => observer.observe(sec));
+  </script>
+  <style>
+    .fade {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 0.9s ease;
+    }
+
+    .fade.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 5px;
+      width: 100%;
+      z-index: 2000;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    #scrollBar {
+      height: 5px;
+      width: 0;
+      background: #4da3ff;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .socials {
+      margin-top: 15px;
+      font-size: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="progress-container">
+    <div id="scrollBar"></div>
+  </div>
+
+  <!-- Hero-banner -->
+  <header
+    style="height: 330px; background: url('https://images.unsplash.com/photo-1527443224154-9c8a5b5b0d89?q=80') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; box-shadow: 0 0 40px rgba(0,0,0,0.6);">
+    <h1 style="font-size: 3rem; color: #fff; text-shadow: 0 0 20px rgba(0,0,0,0.7);">Välkommen till min kursplattform
+    </h1>
+  </header>
+
+  <!-- Meny -->
+  <nav>
+    <ul>
+      <li><a href="#om-mig">Om mig</a></li>
+      <li><a href="#vad-jag-kan">Vad jag kan lära dig</a></li>
+      <li><a href="#kursupplagg">Kursupplägg</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <!-- Om mig -->
+  <section id="om-mig" class="fade">
+    <h2>📌 Om mig</h2>
+    <p>
+      Jag är en person som brinner för att dela kunskap och hjälpa andra att utvecklas.
+      Med flera års erfarenhet inom utbildning, pedagogik och digitalt skapande har jag
+      samlat en bred kompetens för att skapa inspirerande lärandeupplevelser.
+    </p>
+    <img class="small-img" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c" alt="Porträtt">
+  </section>
+
+  <!-- Vad jag kan lära dig -->
+  <section id="vad-jag-kan" class="fade">
+    <h2>🎓 Vad jag kan lära dig</h2>
+    <p>
+      Här får du möjlighet att utveckla dina färdigheter på ett sätt som är både strukturerat
+      och kreativt. Jag erbjuder praktiska övningar, tydliga förklaringar och stöd längs vägen.
+    </p>
+    <img class="small-img" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c" alt="Lära sig nya saker">
+  </section>
+
+  <!-- Kursupplägg -->
+  <section id="kursupplagg" class="fade">
+    <h2>📘 Kursupplägg</h2>
+    <p>
+      Kursen är uppbyggd för att vara flexibel, tydlig och lätt att följa. Varje kapitel innehåller
+      teori och övningar så att du snabbt kan omsätta kunskaper i praktiken.
+    </p>
+    <img class="small-img" src="https://images.unsplash.com/photo-1584697964403-97b6c0c5b8bf" alt="Kursstruktur">
+    <img class="small-img" src="https://images.unsplash.com/photo-1581092334571-22d2736f2b8b" alt="Kursplan extra bild">
+  </section>
+
+  <!-- Extra kurskort -->
+  <section class="fade" style="max-width:900px; margin:auto; margin-top:40px;">
+    <h2>📚 Kursmoduler</h2>
+    <div class="card-grid">
+      <div class="card">Grundläggande introduktion</div>
+      <div class="card">Praktiska övningar</div>
+      <div class="card">Teori + tillämpning</div>
+      <div class="card">Avancerade tips</div>
+    </div>
+  </section>
+
+  <!-- Kontakt -->
+  <section id="kontakt" class="fade">
+    <h2>📞 Kontakt</h2>
+    <p>
+      Har du frågor eller vill veta mer? Hör gärna av dig! Jag finns här för rådgivning och support.
+    </p>
+    <img class="small-img" src="https://images.unsplash.com/photo-1525182008055-f88b95ff7980" alt="Kontakt">
+  </section>
+
+  <!-- Footer -->
+  <footer
+    style="text-align: center; padding: 30px; margin-top: 40px; color: #cfcfcf; background: rgba(255, 255, 255, 0.05); border-top: 1px solid rgba(255,255,255,0.1);">
+    <p style="margin: 0; font-size: 1.1rem;">© 2025 Din Kursplattform – Alla rättigheter förbehållna</p>
+    <div style="margin-top: 10px; font-size: 1.4rem;">
+      ⭐ 🌙 ✨
+    </div>
+    <div class="socials">💬 ⭐ 📧 🌐</div>
+  </footer>
+
+  <!-- CALL TO ACTION -->
+  <section class="fade"
+    style="max-width:900px; margin:auto; margin-top:60px; text-align:center; background:rgba(255,255,255,0.08); padding:40px; border-radius:20px; box-shadow:0 0 25px rgba(0,0,0,0.5);">
+    <h2 style="font-size:2.6rem; text-shadow:0 0 18px #4da3ff;">✨ Är du redo att börja?</h2>
+    <p>Tryck på knappen nedan för att starta din resa!</p>
+    <a href="#kontakt"
+      style="padding:14px 30px; background:#4da3ff; color:#fff; border-radius:12px; font-size:1.3rem; text-decoration:none; box-shadow:0 0 20px rgba(77,163,255,0.7); transition:0.3s; display:inline-block; margin-top:15px;">Kontakta
+      mig</a>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="fade" style="max-width:900px; margin:auto; margin-top:60px;">
+    <h2 style="text-shadow:0 0 15px #4da3ff;">⏳ Kursens tidslinje</h2>
+    <div style="border-left:3px solid #4da3ff; padding-left:20px; margin-top:25px;">
+      <p><strong>Steg 1:</strong> Introduktion & mål</p>
+      <p><strong>Steg 2:</strong> Grundläggande teori</p>
+      <p><strong>Steg 3:</strong> Praktiska övningar</p>
+      <p><strong>Steg 4:</strong> Fördjupning</p>
+      <p><strong>Steg 5:</strong> Avslutning & certifikat</p>
+    </div>
+  </section>
+
+  <!-- RESPONSIV MENY + KONTAKTFORMULÄR SCRIPT -->
+  <script>
+    // Mobilmeny
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    menuToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('open');
+    });
+  </script>
+
+  <!-- KONTAKTFORMULÄR -->
+  <section class="fade" id="kontaktform"
+    style="max-width:900px; margin:auto; margin-top:60px; background:rgba(255,255,255,0.08); padding:40px; border-radius:20px; box-shadow:0 0 25px rgba(0,0,0,0.5);">
+    <h2 style="text-shadow:0 0 15px #4da3ff;">📨 Skicka ett meddelande</h2>
+    <form style="display:flex; flex-direction:column; gap:15px; margin-top:20px;">
+      <input type="text" placeholder="Ditt namn" style="padding:12px; border-radius:8px; border:none;">
+      <input type="email" placeholder="Din e-post" style="padding:12px; border-radius:8px; border:none;">
+      <textarea placeholder="Ditt meddelande" rows="5" style="padding:12px; border-radius:8px; border:none;"></textarea>
+      <button
+        style="padding:14px; background:#4da3ff; border:none; color:white; border-radius:10px; font-size:1.2rem; cursor:pointer; box-shadow:0 0 20px rgba(77,163,255,0.7);">Skicka</button>
+    </form>
+  </section>
+
+</body>
+
+</html>
